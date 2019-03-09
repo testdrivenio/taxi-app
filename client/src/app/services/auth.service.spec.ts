@@ -34,7 +34,7 @@ fdescribe('Authentication using a service', () => {
     ).subscribe(user => {
       expect(user).toBe(userData);
     });
-    const request = httpMock.expectOne('http://localhost:8000/api/sign_up/');
+    const request = httpMock.expectOne('/api/sign_up/');
     request.flush(userData);
   });
 
@@ -49,7 +49,7 @@ fdescribe('Authentication using a service', () => {
     ).subscribe(user => {
       expect(user).toBe(userData);
     });
-    const request = httpMock.expectOne('http://localhost:8000/api/log_in/');
+    const request = httpMock.expectOne('/api/log_in/');
     request.flush(userData);
     // Confirm that the expected data was written to local storage.
     expect(localStorage.getItem('taxi.user')).toBe(JSON.stringify(userData));
@@ -64,7 +64,7 @@ fdescribe('Authentication using a service', () => {
     authService.logOut().subscribe(user => {
       expect(user).toEqual(userData);
     });
-    const request = httpMock.expectOne('http://localhost:8000/api/log_out/');
+    const request = httpMock.expectOne('/api/log_out/');
     request.flush(userData);
     // Confirm that the local storage data was deleted.
     expect(localStorage.getItem('taxi.user')).toBeNull();
