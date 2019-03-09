@@ -9,6 +9,7 @@ import { IsRider } from './services/is-rider.service';
 import { TripService } from './services/trip.service';
 import { TripListResolver } from './services/trip-list.resolver';
 import { TripDetailResolver } from './services/trip-detail.resolver';
+import { IsDriver } from './services/is-driver.service';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -19,6 +20,7 @@ import { RiderDashboardComponent } from './components/rider-dashboard/rider-dash
 import { RiderRequestComponent } from './components/rider-request/rider-request.component';
 import { RiderDetailComponent } from './components/rider-detail/rider-detail.component';
 import { TripCardComponent } from './components/trip-card/trip-card.component';
+import { DriverComponent } from './components/driver/driver.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { TripCardComponent } from './components/trip-card/trip-card.component';
     RiderDashboardComponent,
     RiderRequestComponent,
     RiderDetailComponent,
-    TripCardComponent
+    TripCardComponent,
+    DriverComponent
   ],
   imports: [
     HttpClientModule,
@@ -59,6 +62,11 @@ import { TripCardComponent } from './components/trip-card/trip-card.component';
             resolve: { trips: TripListResolver }
           }
         ]
+      },
+      {
+        path: 'driver',
+        component: DriverComponent,
+        canActivate: [ IsDriver ]
       },
       { path: '', component: LandingComponent }
     ], { useHash: true })
