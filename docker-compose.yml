@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  redis:
+    container_name: taxi-redis
+    image: redis:5.0.3
+
+  server:
+    build:
+      context: ./server
+    command: ["bash", "start.sh"]
+    container_name: taxi-server
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://taxi-redis:6379/0
+    ports:
+      - "8001:8000"
+    volumes:
+      - "./server:/usr/src/app"
+      - "media:/usr/src/app/media"
+      - "static:/usr/src/app/static"
+
+  client:
+    build:
+      context: ./client
+    command: ["ng", "serve", "--host", "0.0.0.0"]
+    container_name: taxi-client
+    depends_on:
+      - server
+    ports:
+      - "4201:4200"
+    volumes:
+      - "./client:/usr/src/app"
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: taxi-nginx
+    depends_on:
+      - server
+      - client
+    ports: 
+      - "8080:80"
+    restart: always
+    volumes:
+      - "media:/usr/src/app/media"
+      - "static:/usr/src/app/static"
+
+volumes:
+  media:
+  static:
