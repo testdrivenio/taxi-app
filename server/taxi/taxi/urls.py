@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -9,4 +11,4 @@ urlpatterns = [
     path('api/log_in/', LogInView.as_view(), name='log_in'),
     path('api/log_out/', LogOutView.as_view(), name='log_out'),
     path('api/trip/', include('trips.urls', 'trip',)),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

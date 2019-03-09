@@ -1,3 +1,6 @@
+from urllib.parse import urljoin
+
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
@@ -6,10 +9,21 @@ from rest_framework import serializers
 from .models import Trip
 
 
+class MediaImageField(serializers.ImageField):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def to_representation(self, value):
+        if not value:
+            return None
+        return urljoin(settings.MEDIA_URL, value.name)
+
+
 class UserSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
     group = serializers.CharField()
+    photo = MediaImageField(allow_empty_file=True)
 
     def validate(self, data):
         if data['password1'] != data['password2']:
@@ -34,6 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'username', 'password1', 'password2', 
             'first_name', 'last_name', 'group',
+            'photo',
         )
         read_only_fields = ('id',)
 
