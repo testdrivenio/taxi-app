@@ -56,11 +56,13 @@ export class TripService {
       this.messages.subscribe(message => console.log(message));
     }
   }
+
   getTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>('/api/trip/').pipe(
       map(trips => trips.map(trip => Trip.create(trip)))
     );
   }
+
   createTrip(trip: Trip): void {
     this.connect();
     const message: any = {
@@ -76,5 +78,16 @@ export class TripService {
     return this.http.get<Trip>(`/api/trip/${id}/`).pipe(
       map(trip => Trip.create(trip))
     );
+  }
+
+  updateTrip(trip: Trip): void {
+    this.connect();
+    const message: any = {
+      type: 'update.trip',
+      data: {
+        ...trip, driver: trip.driver.id, rider: trip.rider.id
+      }
+    };
+    this.webSocket.next(message);
   }
 }
