@@ -36,3 +36,12 @@ class TripSerializer(serializers.ModelSerializer):
         model = Trip
         fields = '__all__'
         read_only_fields = ('id', 'created', 'updated',)
+
+
+class ReadOnlyTripSerializer(serializers.ModelSerializer):
+    driver = UserSerializer(read_only=True)
+    rider = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Trip
+        fields = '__all__'
