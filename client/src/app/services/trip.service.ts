@@ -9,7 +9,7 @@ import { User } from './auth.service';
 
 export class Trip {
   constructor(
-    public id?: number,
+    public id?: string,
     public nk?: string,
     public created?: string,
     public updated?: string,
@@ -68,5 +68,11 @@ export class TripService {
       }
     };
     this.webSocket.next(message);
+  }
+
+  getTrip(id: string): Observable<Trip> {
+    return this.http.get<Trip>(`/api/trip/${id}/`).pipe(
+      map(trip => Trip.create(trip))
+    );
   }
 }

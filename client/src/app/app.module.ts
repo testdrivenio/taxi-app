@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
 import { IsRider } from './services/is-rider.service';
 import { TripService } from './services/trip.service';
 import { TripListResolver } from './services/trip-list.resolver';
+import { TripDetailResolver } from './services/trip-detail.resolver';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -16,6 +17,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { RiderComponent } from './components/rider/rider.component';
 import { RiderDashboardComponent } from './components/rider-dashboard/rider-dashboard.component';
 import { RiderRequestComponent } from './components/rider-request/rider-request.component';
+import { RiderDetailComponent } from './components/rider-detail/rider-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,15 +27,16 @@ import { RiderRequestComponent } from './components/rider-request/rider-request.
     LandingComponent,
     RiderComponent,
     RiderDashboardComponent,
-    RiderRequestComponent
+    RiderRequestComponent,
+    RiderDetailComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'log-in', component: LogInComponent },
       { path: 'sign-up', component: SignUpComponent },
+      { path: 'log-in', component: LogInComponent },
       {
         path: 'rider',
         component: RiderComponent,
@@ -42,6 +45,11 @@ import { RiderRequestComponent } from './components/rider-request/rider-request.
           {
             path: 'request',
             component: RiderRequestComponent
+          },
+          {
+            path: ':id',
+            component: RiderDetailComponent,
+            resolve: { trip: TripDetailResolver }
           },
           {
             path: '',
@@ -57,7 +65,8 @@ import { RiderRequestComponent } from './components/rider-request/rider-request.
     AuthService,
     IsRider,
     TripService,
-    TripListResolver
+    TripListResolver,
+    TripDetailResolver
   ],
   bootstrap: [ AppComponent ]
 })
