@@ -3,7 +3,7 @@
 <ng-template #thenBlock>
   <div class="card-body">
     <ul class="list-unstyled">
-      <li class="media mb-3" [routerLink]="['.', trip.nk]" *ngFor="let trip of trips">
+      <li class="media mb-3" [routerLink]="['.', trip.id]" *ngFor="let trip of trips">
         <img class="mr-3 rounded-circle" [src]="trip.otherUser.photo" width="80" height="80">
         <div class="media-body">
           <h5 class="mt-0 mb-1">{{ trip.otherUser.first_name }}</h5>
