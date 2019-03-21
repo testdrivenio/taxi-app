@@ -73,6 +73,7 @@ import { DriverComponent } from './components/driver/driver.component';
   ],
   providers: [
     AuthService,
+    IsDriver,
     IsRider,
     TripService,
     TripListResolver,
