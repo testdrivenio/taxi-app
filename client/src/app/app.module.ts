@@ -82,6 +82,7 @@ import { DriverDashboardComponent } from './components/driver-dashboard/driver-d
   ],
   providers: [
     AuthService,
+    IsDriver,
     IsRider,
     TripService,
     TripListResolver,
