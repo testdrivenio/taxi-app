@@ -4,12 +4,17 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AgmCoreModule } from '@agm/core';
+
+import { environment } from '../environments/environment';
+
 import { AuthService } from './services/auth.service';
 import { IsRider } from './services/is-rider.service';
 import { TripService } from './services/trip.service';
 import { TripListResolver } from './services/trip-list.resolver';
 import { TripDetailResolver } from './services/trip-detail.resolver';
 import { IsDriver } from './services/is-driver.service';
+import { GoogleMapsService } from './services/google-maps.service';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -85,10 +90,15 @@ import { DriverDetailComponent } from './components/driver-detail/driver-detail.
         ]
       },
       { path: '', component: LandingComponent }
-    ], { useHash: true })
+    ], { useHash: true }),
+    AgmCoreModule.forRoot({
+      apiKey: environment.GOOGLE_API_KEY
+    })
   ],
   providers: [
     AuthService,
+    GoogleMapsService,
+    IsDriver,
     IsRider,
     TripService,
     TripListResolver,
