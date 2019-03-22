@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.5",
-    "@angular/animations": "~7.2.0",
+    "@angular/animations": "^7.2.8",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
@@ -26,6 +26,7 @@
     "core-js": "^2.5.4",
     "faker": "^4.1.0",
     "jquery": "^3.3.1",
+    "ng6-toastr-notifications": "^1.0.4",
     "popper.js": "^1.14.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

@@ -3,6 +3,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { Observable, of } from 'rxjs';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 import { TripService } from '../../services/trip.service';
 import { TripFactory } from '../../testing/factories';
@@ -30,7 +31,8 @@ describe('DriverDashboardComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule.withRoutes([]),
+        ToastrModule.forRoot()
       ],
       declarations: [
         DriverDashboardComponent,

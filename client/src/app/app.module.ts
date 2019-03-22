@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AgmCoreModule } from '@agm/core';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 import { environment } from '../environments/environment';
 
@@ -47,6 +49,7 @@ import { DriverDetailComponent } from './components/driver-detail/driver-detail.
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot([
       { path: 'sign-up', component: SignUpComponent },
@@ -93,7 +96,8 @@ import { DriverDetailComponent } from './components/driver-detail/driver-detail.
     ], { useHash: true }),
     AgmCoreModule.forRoot({
       apiKey: environment.GOOGLE_API_KEY
-    })
+    }),
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthService,
