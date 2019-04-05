@@ -28,9 +28,27 @@
         </ul>
       </div>
       <div class="card-footer" [ngSwitch]="trip.status">
-        <button class="btn btn-primary btn-block" *ngSwitchCase="'REQUESTED'" (click)="updateTripStatus('STARTED')">Drive to pick up</button>
-        <button class="btn btn-primary btn-block" *ngSwitchCase="'STARTED'" (click)="updateTripStatus('IN_PROGRESS')">Drive to drop off</button>
-        <button class="btn btn-primary btn-block" *ngSwitchCase="'IN_PROGRESS'" (click)="updateTripStatus('COMPLETED')">Complete trip</button>
+        <button
+          class="btn btn-primary btn-block"
+          *ngSwitchCase="'REQUESTED'"
+          (click)="updateTripStatus('STARTED')"
+        >
+          Drive to pick up
+        </button>
+        <button
+          class="btn btn-primary btn-block"
+          *ngSwitchCase="'STARTED'"
+          (click)="updateTripStatus('IN_PROGRESS')"
+        >
+          Drive to drop off
+        </button>
+        <button
+          class="btn btn-primary btn-block"
+          *ngSwitchCase="'IN_PROGRESS'"
+          (click)="updateTripStatus('COMPLETED')"
+        >
+          Complete trip
+        </button>
         <span class="text-center" *ngSwitchDefault>Completed</span>
       </div>
     </div>
