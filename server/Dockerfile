@@ -1,6 +1,7 @@
 FROM python:3.7.2-alpine
 
 RUN apk update && apk add build-base python-dev py-pip jpeg-dev zlib-dev
+RUN apk add --no-cache libffi-dev openssl-dev
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR /usr/src/app
